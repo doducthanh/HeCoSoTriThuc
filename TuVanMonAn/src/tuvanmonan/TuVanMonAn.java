@@ -5,6 +5,8 @@
  */
 package tuvanmonan;
 
+import Views.HomeView;
+
 /**
  *
  * @author DoThanh
@@ -16,6 +18,8 @@ public class TuVanMonAn {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        HomeView homeView = new HomeView();
+        homeView.setVisible(true);
     }
     
 }
