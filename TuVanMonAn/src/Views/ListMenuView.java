@@ -5,17 +5,32 @@
  */
 package Views;
 
+import Controller.ControlFood;
+import Controller.InterfaceListMenu;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DoThanh
  */
-public class ListMenuView extends javax.swing.JFrame {
-
+public class ListMenuView extends javax.swing.JFrame implements InterfaceListMenu{
+    private static String[] row;
     /**
      * Creates new form ListMenuView
      */
     public ListMenuView() {
         initComponents();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        for (int i = model.getRowCount()-1; i >= 0; i--) {
+//            System.out.println("xoa row thu "+i);
+            model.removeRow(i);
+        }
+        try {
+            new ControlFood(this).ShowFood();
+        }
+        catch(Exception e) {
+            System.err.println("error:" + e);
+        }
     }
 
     /**
@@ -50,7 +65,7 @@ public class ListMenuView extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -156,4 +171,19 @@ public class ListMenuView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+
+    @Override
+    public void ShowList(String id, String tenmon, String soluong, String protein, String tinhbot, String lipit) {
+        try {
+            String[] rowshow = {id, tenmon, soluong, protein, tinhbot, lipit};
+            row = rowshow;
+            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            //model.removeRow(0);
+            model.addRow(row);
+        }
+        catch(Exception e) {
+            System.err.println("error: " + e);
+        }
+    }
 }
