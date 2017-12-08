@@ -62,6 +62,42 @@ public class QueryFood {
     
     
     /**
+     * hien thi danh sach cac mon an
+     * @return
+     * @throws SQLException 
+     */
+    public static ArrayList<String> ShowAll() throws SQLException {
+        try(Connection conn = ConnectSQL.connectsql()) {
+            String query = "SELECT * FROM tbl_monan";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs;
+            ArrayList<String> food = new ArrayList<String>();
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String tenmon = rs.getString("tenmon");
+                String soluong = rs.getString("soluong");
+                String protein = rs.getString("protein");
+                String tinhbot = rs.getString("tinhbot");
+                String lipit = rs.getString("lipit");
+                food.add(id);
+                food.add(tenmon);
+                food.add(soluong);
+                food.add(protein);
+                food.add(tinhbot);
+                food.add(lipit);
+            }
+            conn.close();
+            return food;
+        }
+        catch(Exception e) {
+            System.out.println("error: " + e);
+        }
+        return null;
+    }
+    
+    
+    /**
      * them mon an vao thuc don
      * @param tenmon ten mon an them vao thuc don
      * @param soluong 
