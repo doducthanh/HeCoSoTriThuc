@@ -10,5 +10,12 @@ package Util;
  * @author DoThanh
  */
 public class Common {
-    
+    public static double CHI_SO_GAY = 18.5;
+    public static double CHI_BINH_THUONG = 25.0;
+    public static double CHI_SO_THUA_CAN = 30.0;
+   
+    public static String GAY = "Bạn gầy";
+    public static String BINH_THUONG = "Bạn bình thường";
+    public static String THUA_CAN = "Bạn thừa cân";
+    public static String BEO_PHI = "Bạn béo phì";
 }

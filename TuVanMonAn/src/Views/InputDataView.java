@@ -254,7 +254,16 @@ public class InputDataView extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (checkValidValue()) {
-            
+            //chuyen man hinh
+            float chieucao = Float.parseFloat(textField_DoCao.getText());
+            float cannang = Float.parseFloat(textField_CanNang.getText());
+            System.out.println("can nang la "+cannang);
+            ResultView resultView = new ResultView();
+            resultView.chiecao = chieucao;
+            resultView.cannang = cannang;
+            resultView.setVisible(true);
+            this.setVisible(false);
+            resultView.showResult();
         } else {
             System.out.println("chua nhap du gia tri");
         }
@@ -270,7 +279,22 @@ public class InputDataView extends javax.swing.JFrame {
             System.out.println("chua nhap du gia tri");
             return false;
         }
+//        if (isNumeric(textField_DoCao.getText()) || 
+//            isNumeric(textField_CanNang.getText()) ||
+//            isNumeric(textField_DoTuoi.getText())) {
+//            JOptionPane.showMessageDialog(this, "giá trị nhập không đúng");
+//            System.out.println("chua nhap du gia tri");
+//        }
         return true;
+    }
+    
+    public boolean isNumeric(String str){  
+        try{  
+            double d = Double.parseDouble(str);  
+        }catch(NumberFormatException nfe){  
+            return false;  
+        }  
+        return true;  
     }
     /**
      * @param args the command line arguments
