@@ -141,6 +141,10 @@ public class HomeView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 416870e314a6c4bdbc204bdf05273589f4a4e4a4
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ChangeFoodView foodView = new ChangeFoodView();
@@ -153,6 +157,10 @@ public class HomeView extends javax.swing.JFrame {
         ListMenuView listMenuView = new ListMenuView();
         listMenuView.setVisible(true);
         this.setVisible(false);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 416870e314a6c4bdbc204bdf05273589f4a4e4a4
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

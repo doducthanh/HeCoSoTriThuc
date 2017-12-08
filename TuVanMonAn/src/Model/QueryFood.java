@@ -61,41 +61,40 @@ public class QueryFood {
     } 
     
     
-    public static ArrayList<String> SearchFoodName(String tenmon) throws SQLException {
+    /**
+     * hien thi danh sach cac mon an
+     * @return
+     * @throws SQLException 
+     */
+    public static ArrayList<String> ShowAll() throws SQLException {
         try(Connection conn = ConnectSQL.connectsql()) {
-            String query = "SELECT * FROM tbl_monan WHERE tenmon = ? COLLATE utf8_vietnamese2_ci;";
+            String query = "SELECT * FROM tbl_monan";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, tenmon);
             ResultSet rs;
             ArrayList<String> food = new ArrayList<String>();
             rs = ps.executeQuery();
             while (rs.next()) {
-                String id = rs.getString("ID");
+                String id = rs.getString("id");
+                String tenmon = rs.getString("tenmon");
                 String soluong = rs.getString("soluong");
                 String protein = rs.getString("protein");
                 String tinhbot = rs.getString("tinhbot");
                 String lipit = rs.getString("lipit");
-                String nhom = rs.getString("nhom");
-                String diem = rs.getString("diem");
-                String status = rs.getString("status");
                 food.add(id);
                 food.add(tenmon);
                 food.add(soluong);
                 food.add(protein);
                 food.add(tinhbot);
                 food.add(lipit);
-                food.add(nhom);
-                food.add(diem);
-                food.add(status);
             }
-                conn.close();
+            conn.close();
             return food;
         }
         catch(Exception e) {
             System.out.println("error: " + e);
         }
         return null;
-    } 
+    }
     
     
     /**
@@ -131,7 +130,7 @@ public class QueryFood {
     }
     
     public static void main(String[] args) throws SQLException {
-        ArrayList<String> food = SearchFoodName("cơm");
+        ArrayList<String> food = SearchFood("1");
         System.out.println(food.get(1));
         InsertFood("che", "1 bat", "70", "90", "49", "1", 0000000010);
     }
