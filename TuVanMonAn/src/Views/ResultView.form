@@ -141,6 +141,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#x103;ng c&#xe2;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tang1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="tang2">
           <Properties>
@@ -159,6 +162,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tang3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="tang4">
           <Properties>
@@ -181,6 +187,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="giam3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="giam2">
           <Properties>
@@ -214,6 +223,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Ti&#x1ebf;p t&#x1ee5;c"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

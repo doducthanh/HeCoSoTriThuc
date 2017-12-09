@@ -13,7 +13,7 @@ import java.sql.DriverManager;
  * @author quangns
  */
 public class ConnectSQL {
-    static Connection connectsql(){
+    public static Connection connectsql(){
         try {
 //          To load the JDBC driver
             Class.forName("com.mysql.jdbc.Driver");

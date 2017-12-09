@@ -18,4 +18,10 @@ public class Common {
     public static String BINH_THUONG = "Bạn bình thường";
     public static String THUA_CAN = "Bạn thừa cân";
     public static String BEO_PHI = "Bạn béo phì";
+    
+    public enum LuaChon {
+        TANG_CAN,
+        GIAM_CAN,
+        GIU_CAN
+    }
 }

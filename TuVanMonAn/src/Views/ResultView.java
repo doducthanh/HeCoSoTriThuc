@@ -6,6 +6,8 @@
 package Views;
 
 import Controller.MainController;
+import Util.Common.LuaChon;
+import java.util.Vector;
 
 /**
  *
@@ -15,6 +17,10 @@ public class ResultView extends javax.swing.JFrame {
     public float chiecao, cannang, dotuoi;
     public boolean isMale;
     public int mucDoLaoDong;
+    public int select;
+    public int indexSelectTang, indexSelectGiam;
+    public float TDEE;
+    Vector vTest = new Vector(0);
     /**
      * Creates new form ResultView
      */
@@ -69,16 +75,31 @@ public class ResultView extends javax.swing.JFrame {
         textResult.setText("jLabel3");
 
         tang1.setText("Tăng cân");
+        tang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tang1ActionPerformed(evt);
+            }
+        });
 
         tang2.setText("Số cân");
 
         tang3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        tang3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tang3ActionPerformed(evt);
+            }
+        });
 
         tang4.setText("kg / tháng");
 
         giam4.setText("kg / tháng");
 
         giam3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.5", "1", "1.5", "2" }));
+        giam3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giam3ActionPerformed(evt);
+            }
+        });
 
         giam2.setText("Số cân");
 
@@ -100,6 +121,11 @@ public class ResultView extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/Next.png"))); // NOI18N
         jButton1.setText("Tiếp tục");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,11 +201,53 @@ public class ResultView extends javax.swing.JFrame {
 
     private void giam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giam1ActionPerformed
         // TODO add your handling code here:
+        select = 1;
+        giucan.setSelected(false);
+        tang1.setSelected(false);
+        giam1.setSelected(true);
     }//GEN-LAST:event_giam1ActionPerformed
 
     private void giucanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giucanActionPerformed
         // TODO add your handling code here:
+        select = 2;
+        giucan.setSelected(true);
+        tang1.setSelected(false);
+        giam1.setSelected(false);
     }//GEN-LAST:event_giucanActionPerformed
+
+    private void tang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tang1ActionPerformed
+        // TODO add your handling code here:
+        select = 0;
+        giucan.setSelected(false);
+        tang1.setSelected(true);
+        giam1.setSelected(false);
+    }//GEN-LAST:event_tang1ActionPerformed
+
+    private void tang3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tang3ActionPerformed
+        // TODO add your handling code here:
+        indexSelectTang = tang3.getSelectedIndex();
+    }//GEN-LAST:event_tang3ActionPerformed
+
+    private void giam3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giam3ActionPerformed
+        // TODO add your handling code here:
+        indexSelectGiam = giam3.getSelectedIndex();
+    }//GEN-LAST:event_giam3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //thuc thien code cho button xac nhan.
+        ResultMenuView listMenuView = new ResultMenuView();
+        listMenuView.setVisible(true);
+        MainController controller = new MainController();
+        float calo = controller.getCaloNeed(select, indexSelectTang, indexSelectGiam, TDEE);
+        listMenuView.setCalo(calo);
+        listMenuView.setCaloTungBua(controller.CaloSang,
+                controller.CaloTrua, controller.CaloToi);
+        listMenuView.setTable(1);
+        listMenuView.setTable(2);
+        listMenuView.setTable(3);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

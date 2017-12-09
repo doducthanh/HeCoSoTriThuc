@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Controller.MainController;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +13,8 @@ import javax.swing.JOptionPane;
  * @author DoThanh
  */
 public class InputDataView extends javax.swing.JFrame {
-
+    public float chiecao, cannang, tuoi;
+    public int gioitinh, mucdoladong;
     /**
      * Creates new form InputDataView
      */
@@ -132,11 +134,21 @@ public class InputDataView extends javax.swing.JFrame {
         jLabel9.setText("Giới tính");
 
         comboBox_GioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        comboBox_GioiTinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBox_GioiTinhActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Mức độ lao động");
 
         comBoBox_MucDoLaoDong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhẹ", "Vừa", "Trung bình", "Nặng", "Rất nặng" }));
+        comBoBox_MucDoLaoDong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comBoBox_MucDoLaoDongActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -262,12 +274,23 @@ public class InputDataView extends javax.swing.JFrame {
             resultView.chiecao = chieucao;
             resultView.cannang = cannang;
             resultView.setVisible(true);
+            resultView.TDEE = new MainController().getTDEE(mucdoladong, gioitinh, chieucao, cannang, tuoi);
             this.setVisible(false);
             resultView.showResult();
         } else {
             System.out.println("chua nhap du gia tri");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void comboBox_GioiTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_GioiTinhActionPerformed
+        // TODO add your handling code here:
+        gioitinh = comboBox_GioiTinh.getSelectedIndex();
+    }//GEN-LAST:event_comboBox_GioiTinhActionPerformed
+
+    private void comBoBox_MucDoLaoDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoBox_MucDoLaoDongActionPerformed
+        // TODO add your handling code here:
+        mucdoladong = comBoBox_MucDoLaoDong.getSelectedIndex();
+    }//GEN-LAST:event_comBoBox_MucDoLaoDongActionPerformed
 
     /**** PUBLIC FUNCTIO
      * @return N****/
