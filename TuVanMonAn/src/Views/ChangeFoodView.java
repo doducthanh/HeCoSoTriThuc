@@ -5,19 +5,46 @@
  */
 package Views;
 
+import Controller.MainController;
+import Model.QueryFood;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DoThanh
  */
 public class ChangeFoodView extends javax.swing.JFrame {
-
+    public boolean select = false;
+    public String tenmon;
+    public int index;
+    public boolean isLike = false;
     /**
      * Creates new form ChangeFoodView
      */
     public ChangeFoodView() {
         initComponents();
+        initParam();;
     }
 
+    public void initParam(){
+        jRadioButton1.setSelected(true);
+        isLike = true;
+        try {
+            // TODO add your handling code here:
+            ArrayList<String> array = new QueryFood().getAllFood();
+            for (int i = 0; i < array.size(); i++) {
+                String object = array.get(i);
+                jComboBox1.addItem(object);
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChangeFoodView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,11 +81,26 @@ public class ChangeFoodView extends javax.swing.JFrame {
 
         jRadioButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jRadioButton1.setText("Thích");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jRadioButton2.setText("Không thích");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setMaximumRowCount(1000);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,10 +115,20 @@ public class ChangeFoodView extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/Add.png"))); // NOI18N
         jButton1.setText("Thêm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/Delete.png"))); // NOI18N
         jButton2.setText("Xóa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setText("Xác nhận");
@@ -158,6 +210,56 @@ public class ChangeFoodView extends javax.swing.JFrame {
         homeView.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        tenmon = (String) jComboBox1.getSelectedItem();
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        select = true;
+        isLike = true;
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        select = false;
+        isLike = false;
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(true);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new MainController().upDateFood(tenmon, isLike);
+        ArrayList<String> list = new QueryFood().getInforFoodForName(tenmon);
+        if (isLike) {
+            DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+            Object []object = new Object[3];
+            object[0] = "1";
+            object[1] = tenmon;
+            object[2] = "Thich";
+            model1.addRow(object);
+            jTable1.setModel(model1);
+        }else{
+            DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+            Object []object = new Object[3];
+            object[0] = "1";
+            object[1] = tenmon;
+            object[2] = "Không thich";
+            model1.addRow(object);
+            jTable1.setModel(model1);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+        model1.removeRow(jTable1.getSelectedRow());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

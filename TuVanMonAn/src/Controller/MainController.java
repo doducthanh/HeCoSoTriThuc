@@ -6,12 +6,14 @@
 package Controller;
 
 import Model.ConnectSQL;
+import Model.QueryFood;
 import Util.Common;
 import Util.Common.LuaChon;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -223,6 +225,17 @@ public class MainController {
         } catch (SQLException ex) {
             
         }
-        
+    }
+    
+    public ArrayList<String>getInforFood (String name){
+        return new QueryFood().getInforFoodForName(name);
+    }
+    
+    public void upDateFood (String name, boolean isLike){
+        if (isLike) {
+            new QueryFood().upDateInforFoodLike(name);
+        }else{
+            new QueryFood().upDateInforFoodDisLike(name);
+        }
     }
 }
