@@ -181,21 +181,21 @@ public class QueryFood {
     public void upDateInforFoodLike (String name){
         try(Connection conn = ConnectSQL.connectsql()) {
             int diem = 0;
-            String query = "SELECT diem FROM tbl_monan WHERE tenmon = '"+name+"'";
+            String query = "SELECT diem FROM tbl_monan WHERE tenmon = '"+name;
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs;
             rs = ps.executeQuery();
             while (rs.next()) {
-                String diemHienTai = rs.getString("diem");
-                diem = Integer.parseInt(diemHienTai);
+                int diemHienTai = rs.getInt("diem");
+//                diem = Integer.parseInt(diemHienTai);
                 System.out.println("diem la " + diem);
             }
             diem = diem + 5;
-            String queryUpdate = "UPDATE tbl_monan SET diem = "+diem+" WHERE tenmon = '"+name+"'";
-            String queryUpdate2 = "UPDATE tbl_monan SET status = 1 WHERE tenmon = '"+name+"'";
+            String queryUpdate = "UPDATE tbl_monan SET diem = "+diem+", status = 1 WHERE tenmon = '"+name+"'";
+//            String queryUpdate2 = "UPDATE tbl_monan SET status = 1 WHERE tenmon = '"+name+"'";
             
             ps.executeUpdate(queryUpdate);
-            ps.executeUpdate(queryUpdate2);
+//            ps.executeUpdate(queryUpdate2);
             conn.close();
         }catch(Exception e){
             
