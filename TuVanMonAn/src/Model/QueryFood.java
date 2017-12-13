@@ -134,14 +134,16 @@ public class QueryFood {
     public static ArrayList<String> getAllFood() throws SQLException{
         ArrayList<String> arrayList = new ArrayList<>();
         try(Connection conn = ConnectSQL.connectsql()) {
-            String query = "SELECT tenmon FROM tbl_monan";
+            String query = "SELECT id, tenmon FROM tbl_monan";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs;
             //ArrayList<String> food = new ArrayList<String>();
             rs = ps.executeQuery();
             while (rs.next()) {
+                String id = rs.getString("id");
                 String mon = rs.getString("tenmon");
                 System.out.println(mon);
+                arrayList.add(id);
                 arrayList.add(mon);
             }
             conn.close();
@@ -178,20 +180,20 @@ public class QueryFood {
         return infor;
     }
     
-    public void upDateInforFoodLike (String name){
+    public void upDateInforFoodLike (String id){
         try(Connection conn = ConnectSQL.connectsql()) {
             int diem = 0;
-            String query = "SELECT diem FROM tbl_monan WHERE tenmon = '"+name;
+            String query = "SELECT diem FROM tbl_monan WHERE id = "+id;
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs;
             rs = ps.executeQuery();
             while (rs.next()) {
-                int diemHienTai = rs.getInt("diem");
+                diem = rs.getInt("diem");
 //                diem = Integer.parseInt(diemHienTai);
                 System.out.println("diem la " + diem);
             }
             diem = diem + 5;
-            String queryUpdate = "UPDATE tbl_monan SET diem = "+diem+", status = 1 WHERE tenmon = '"+name+"'";
+            String queryUpdate = "UPDATE tbl_monan SET diem = "+diem+", status = 1 WHERE id = "+id;
 //            String queryUpdate2 = "UPDATE tbl_monan SET status = 1 WHERE tenmon = '"+name+"'";
             
             ps.executeUpdate(queryUpdate);
@@ -202,29 +204,29 @@ public class QueryFood {
         }
     }
     
-    public void upDateInforFoodDisLike (String name){
+    public void upDateInforFoodDisLike (String id){
         try(Connection conn = ConnectSQL.connectsql()) {
             int diem = 0;
-            String query = "SELECT diem FROM tbl_monan WHERE tenmon = '"+name+"'";
+            String query = "SELECT diem FROM tbl_monan WHERE id = "+id;
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs;
             rs = ps.executeQuery();
             while (rs.next()) {
-                String diemHienTai = rs.getString("diem");
-                diem = Integer.parseInt(diemHienTai);
+                diem = rs.getInt("diem");
                 System.out.println("diem la " + diem);
             }
             diem = diem - 5;
-            String queryUpdate = "UPDATE tbl_monan SET diem = "+diem+" WHERE tenmon = '"+name+"'";
-            String queryUpdate2 = "UPDATE tbl_monan SET status = -1 WHERE tenmon = '"+name+"'";
+            String queryUpdate = "UPDATE tbl_monan SET diem = "+diem+", status = -1 WHERE id = " + id;
+//            String queryUpdate2 = "UPDATE tbl_monan SET status = -1 WHERE tenmon = '"+name+"'";
             
             ps.executeUpdate(queryUpdate);
-            ps.executeUpdate(queryUpdate2);
+//            ps.executeUpdate(queryUpdate2);
             conn.close();
         }catch(Exception e){
             
         }
     }
+    
     public static void main(String[] args) throws SQLException {
         ArrayList<String> food = SearchFood("1");
         System.out.println(food.get(1));

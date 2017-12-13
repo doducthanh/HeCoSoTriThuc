@@ -9,6 +9,8 @@ import Controller.MainController;
 import Model.QueryFood;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +24,7 @@ public class ChangeFoodView extends javax.swing.JFrame {
     public String tenmon;
     public int index;
     public boolean isLike = false;
+    HashMap<String, String> hm = new HashMap<String,String>();
     /**
      * Creates new form ChangeFoodView
      */
@@ -36,10 +39,10 @@ public class ChangeFoodView extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             ArrayList<String> array = new QueryFood().getAllFood();
-            for (int i = 0; i < array.size(); i++) {
-                String object = array.get(i);
+            for (int i = 0; i < array.size(); i = i + 2) {
+                String object = array.get(i+1);
                 jComboBox1.addItem(object);
-               
+                hm.put(array.get(i), array.get(i+1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChangeFoodView.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,7 +237,14 @@ public class ChangeFoodView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new MainController().upDateFood(tenmon, isLike);
+        for(Map.Entry m: hm.entrySet()){
+            if(m.getValue().equals(tenmon)) {
+                new MainController().upDateFood((String) m.getKey(), isLike);
+                break;
+            }
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+//        new MainController().upDateFood(tenmon, isLike);
         ArrayList<String> list = new QueryFood().getInforFoodForName(tenmon);
         if (isLike) {
             DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();

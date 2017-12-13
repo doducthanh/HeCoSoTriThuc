@@ -231,11 +231,11 @@ public class MainController {
         return new QueryFood().getInforFoodForName(name);
     }
     
-    public void upDateFood (String name, boolean isLike){
+    public void upDateFood (String id, boolean isLike){
         if (isLike) {
-            new QueryFood().upDateInforFoodLike(name);
+            new QueryFood().upDateInforFoodLike(id);
         }else{
-            new QueryFood().upDateInforFoodDisLike(name);
+            new QueryFood().upDateInforFoodDisLike(id);
         }
     }
 }
