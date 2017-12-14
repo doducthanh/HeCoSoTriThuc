@@ -5,8 +5,7 @@
         <group>
             <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Views/ChangeFoodView.java</file>
             <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Model/QueryFood.java</file>
-            <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Views/ResultMenuView.java</file>
-            <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Model/ConnectSQL.java</file>
+            <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Controller/MainController.java</file>
         </group>
     </open-files>
 </project-private>
