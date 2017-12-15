@@ -110,7 +110,7 @@ public class QueryFood {
      * @throws SQLException 
      */
     public static void InsertFood(String tenmon, String soluong, String protein,
-            String tinhbot, String lipit, String nhom, long diem) throws SQLException {
+            String tinhbot, String lipit, String nhom, String diem) throws SQLException {
         try(Connection conn = ConnectSQL.connectsql()) {
             String query = "INSERT INTO tbl_monan(tenmon, soluong, protein, tinhbot, lipit, nhom, diem)"
                     + " VALUES(?,?,?,?,?,?,?)";
@@ -121,7 +121,7 @@ public class QueryFood {
             ps.setString(4, tinhbot);
             ps.setString(5, lipit);
             ps.setString(6, nhom);
-            ps.setLong(7, diem);
+            ps.setString(7, diem);
             ps.executeUpdate();
             conn.close();
         }
@@ -228,6 +228,7 @@ public class QueryFood {
         }
     }
     
+<<<<<<< HEAD
     public ArrayList<Food> getFoodFavorite(){
         ArrayList<Food> array = new ArrayList<>();
         try(Connection conn = ConnectSQL.connectsql()) {
@@ -248,10 +249,32 @@ public class QueryFood {
                 array.add(food);
             }
             conn.close();
+=======
+    public static ArrayList<Food> GetCaloFood(int nhom) {
+        ArrayList<Food> array = new ArrayList<Food>();
+        try (Connection conn = ConnectSQL.connectsql()) {
+            String query = "SELECT * FROM tbl_monan WHERE nhom = " + nhom + " ORDER BY diem desc";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Food food = new Food();
+                int protein = rs.getInt("protein");
+                int tinhbot = rs.getInt("tinhbot");
+                int lipit = rs.getInt("lipit");
+                String tenmon = rs.getString("tenmon");
+                food.setProtein(protein);
+                food.setTinhbot(tinhbot);
+                food.setLipit(lipit);
+                food.setTenmon(tenmon);
+                array.add(food);
+            }
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
             return array;
         }catch(Exception e){
             
         }
+<<<<<<< HEAD
         return array;
     } 
     
@@ -271,9 +294,14 @@ public class QueryFood {
             
         }
     }
+=======
+        return null;
+    }
+    
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
     public static void main(String[] args) throws SQLException {
         ArrayList<String> food = SearchFood("1");
         System.out.println(food.get(1));
-        InsertFood("che", "1 bat", "70", "90", "49", "1", 0000000010);
+        InsertFood("cháo hành băm", "1 bat", "70", "90", "49", "1", "00000000010");
     }
 }

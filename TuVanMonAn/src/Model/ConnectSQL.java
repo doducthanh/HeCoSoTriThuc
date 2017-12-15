@@ -22,7 +22,7 @@ public class ConnectSQL {
             Class.forName("com.mysql.jdbc.Driver");
 //          Create Connection variable in order to connect to database
             Connection conn = null;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/cstt", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/cstt?useUnicode=yes&characterEncoding=UTF-8", "root", "");
             System.out.println("Database in connected!");
             return conn;
 //            Statement st = conn.createStatement();

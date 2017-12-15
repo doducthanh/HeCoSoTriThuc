@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/CAC%20MON%20HOC/CSTT/TuVanMonAn/src/Data/Food.java</file>
             <file>file:/D:/CAC%20MON%20HOC/CSTT/TuVanMonAn/src/Controller/MainController.java</file>
             <file>file:/D:/CAC%20MON%20HOC/CSTT/TuVanMonAn/src/Views/ResultMenuView.java</file>
@@ -12,6 +13,11 @@
             <file>file:/D:/CAC%20MON%20HOC/CSTT/TuVanMonAn/src/Controller/ControlFood.java</file>
             <file>file:/D:/CAC%20MON%20HOC/CSTT/TuVanMonAn/src/Views/InputDataView.java</file>
             <file>file:/D:/CAC%20MON%20HOC/CSTT/TuVanMonAn/src/Model/QueryFood.java</file>
+=======
+            <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Views/ChangeFoodView.java</file>
+            <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Model/QueryFood.java</file>
+            <file>file:/E:/github/HeCoSoTriThuc/TuVanMonAn/src/Controller/MainController.java</file>
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
         </group>
     </open-files>
 </project-private>
