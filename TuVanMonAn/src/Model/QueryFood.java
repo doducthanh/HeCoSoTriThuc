@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Data.Food;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -227,6 +228,49 @@ public class QueryFood {
         }
     }
     
+    public ArrayList<Food> getFoodFavorite(){
+        ArrayList<Food> array = new ArrayList<>();
+        try(Connection conn = ConnectSQL.connectsql()) {
+            //int diem = 0;
+            String query = "SELECT id, tenmon, status FROM tbl_monan WHERE status = 1 OR status = -1";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            //Food food = new Food();
+            while (rs.next()) {
+                Food food = new Food();
+                int index = array.size();
+                food.setId(rs.getInt("id"));
+                food.setTenmon(rs.getString("tenmon"));
+                food.setStatus(rs.getInt("status"));
+                //array.set(index, food);
+                System.out.println(food.getTenmon());
+                array.add(food);
+            }
+            conn.close();
+            return array;
+        }catch(Exception e){
+            
+        }
+        return array;
+    } 
+    
+    public void reSetFood (String id){
+        try(Connection conn = ConnectSQL.connectsql()) {
+            int diem = 0;
+           
+           
+            ResultSet rs;
+            String queryUpdate = "UPDATE tbl_monan SET diem = 0, status = 0 WHERE id = " + id;
+//            String queryUpdate2 = "UPDATE tbl_monan SET status = -1 WHERE tenmon = '"+name+"'";
+            PreparedStatement ps = conn.prepareStatement(queryUpdate);
+            ps.executeUpdate(queryUpdate);
+//            ps.executeUpdate(queryUpdate2);
+            conn.close();
+        }catch(Exception e){
+            
+        }
+    }
     public static void main(String[] args) throws SQLException {
         ArrayList<String> food = SearchFood("1");
         System.out.println(food.get(1));

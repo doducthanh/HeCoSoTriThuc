@@ -65,8 +65,6 @@ public class ResultMenuView extends javax.swing.JFrame {
         this.CaloToi[0] = calotoi[0];
         this.CaloToi[1] = calotoi[1];
         this.CaloToi[2] = calotoi[2];
-        
-        
     }
     
     /** This method is called from within the constructor to

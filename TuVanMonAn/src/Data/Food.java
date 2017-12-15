@@ -10,87 +10,91 @@ package Data;
  * @author DoThanh
  */
 public class Food {
-    private static String id;
-    private static String tenmon;
-    private static String soluong;
-    private static String protein;
-    private static String tinhbot;
-    private static String lipit;
-    private static String nhom;
-    private static long diem;
-    private static String status;
+    private  int id;
+    private  String tenmon;
+    private  String soluong;
+    private  long protein;
+    private  long tinhbot;
+    private  long lipit;
+    private  int nhom;
+    private  long diem;
+    private  int status;
 
-    public static String getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(String id) {
-        Food.id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static String getTenmon() {
+    public String getTenmon() {
         return tenmon;
     }
 
-    public static void setTenmon(String tenmon) {
-        Food.tenmon = tenmon;
+    public void setTenmon(String tenmon) {
+        this.tenmon = tenmon;
     }
 
-    public static String getSoluong() {
+    public String getSoluong() {
         return soluong;
     }
 
-    public static void setSoluong(String soluong) {
-        Food.soluong = soluong;
+    public void setSoluong(String soluong) {
+        this.soluong = soluong;
     }
 
-    public static String getProtein() {
+    public long getProtein() {
         return protein;
     }
 
-    public static void setProtein(String protein) {
-        Food.protein = protein;
+    public void setProtein(long protein) {
+        this.protein = protein;
     }
 
-    public static String getTinhbot() {
+    public long getTinhbot() {
         return tinhbot;
     }
 
-    public static void setTinhbot(String tinhbot) {
-        Food.tinhbot = tinhbot;
+    public void setTinhbot(long tinhbot) {
+        this.tinhbot = tinhbot;
     }
 
-    public static String getLipit() {
+    public long getLipit() {
         return lipit;
     }
 
-    public static void setLipit(String lipit) {
-        Food.lipit = lipit;
+    public void setLipit(long lipit) {
+        this.lipit = lipit;
     }
 
-    public static String getNhom() {
+    public int getNhom() {
         return nhom;
     }
 
-    public static void setNhom(String nhom) {
-        Food.nhom = nhom;
+    public void setNhom(int nhom) {
+        this.nhom = nhom;
     }
 
-    public static long getDiem() {
+    public long getDiem() {
         return diem;
     }
 
-    public static void setDiem(long diem) {
-        Food.diem = diem;
+    public void setDiem(long diem) {
+        this.diem = diem;
     }
 
-    public static String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public static void setStatus(String status) {
-        Food.status = status;
+    public void setStatus(int status) {
+        this.status = status;
     }
+
+    
+
+    
     
     
 }
