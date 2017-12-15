@@ -6,6 +6,7 @@
 package Views;
 
 import Controller.MainController;
+import Data.Food;
 import Model.QueryFood;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,6 +47,22 @@ public class ChangeFoodView extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChangeFoodView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+           
+        ArrayList<Food> arrayList = new QueryFood().getFoodFavorite();
+        for (int i = 0; i < arrayList.size(); i++) {
+            Food food = arrayList.get(i);
+            Object []object = new Object[3];
+            object[0] = food.getId();
+            object[1] = food.getTenmon();
+            if (food.getStatus() == 1) {
+                object[2] = "Thich";
+            }else{
+                object[2] = "Không thích";
+            }
+            model1.addRow(object);
+            jTable1.setModel(model1);
         }
     }
     /**
@@ -267,8 +284,12 @@ public class ChangeFoodView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
         DefaultTableModel model1 = (DefaultTableModel) jTable1.getModel();
+        String id = String.valueOf(model1.getValueAt(jTable1.getSelectedRow(), 0));
+        new QueryFood().reSetFood(id);
         model1.removeRow(jTable1.getSelectedRow());
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

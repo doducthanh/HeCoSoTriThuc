@@ -228,6 +228,28 @@ public class QueryFood {
         }
     }
     
+<<<<<<< HEAD
+    public ArrayList<Food> getFoodFavorite(){
+        ArrayList<Food> array = new ArrayList<>();
+        try(Connection conn = ConnectSQL.connectsql()) {
+            //int diem = 0;
+            String query = "SELECT id, tenmon, status FROM tbl_monan WHERE status = 1 OR status = -1";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            //Food food = new Food();
+            while (rs.next()) {
+                Food food = new Food();
+                int index = array.size();
+                food.setId(rs.getInt("id"));
+                food.setTenmon(rs.getString("tenmon"));
+                food.setStatus(rs.getInt("status"));
+                //array.set(index, food);
+                System.out.println(food.getTenmon());
+                array.add(food);
+            }
+            conn.close();
+=======
     public static ArrayList<Food> GetCaloFood(int nhom) {
         ArrayList<Food> array = new ArrayList<Food>();
         try (Connection conn = ConnectSQL.connectsql()) {
@@ -249,13 +271,36 @@ public class QueryFood {
                 food.setTenmon(tenmon);
                 array.add(food);
             }
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
             return array;
         }catch(Exception e){
             
         }
+<<<<<<< HEAD
+        return array;
+    } 
+    
+    public void reSetFood (String id){
+        try(Connection conn = ConnectSQL.connectsql()) {
+            int diem = 0;
+           
+           
+            ResultSet rs;
+            String queryUpdate = "UPDATE tbl_monan SET diem = 0, status = 0 WHERE id = " + id;
+//            String queryUpdate2 = "UPDATE tbl_monan SET status = -1 WHERE tenmon = '"+name+"'";
+            PreparedStatement ps = conn.prepareStatement(queryUpdate);
+            ps.executeUpdate(queryUpdate);
+//            ps.executeUpdate(queryUpdate2);
+            conn.close();
+        }catch(Exception e){
+            
+        }
+    }
+=======
         return null;
     }
     
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
     public static void main(String[] args) throws SQLException {
         ArrayList<String> food = SearchFood("1");
         System.out.println(food.get(1));

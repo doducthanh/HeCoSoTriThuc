@@ -10,6 +10,17 @@ package Data;
  * @author DoThanh
  */
 public class Food {
+<<<<<<< HEAD
+    private  int id;
+    private  String tenmon;
+    private  String soluong;
+    private  long protein;
+    private  long tinhbot;
+    private  long lipit;
+    private  int nhom;
+    private  long diem;
+    private  int status;
+=======
     private int id;
     private String tenmon;
     private int soluong;
@@ -28,6 +39,7 @@ public class Food {
     public void setCalo(float calo) {
         this.calo = calo;
     }
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
 
     public int getId() {
         return id;
@@ -53,6 +65,29 @@ public class Food {
         this.soluong = soluong;
     }
 
+<<<<<<< HEAD
+    public long getProtein() {
+        return protein;
+    }
+
+    public void setProtein(long protein) {
+        this.protein = protein;
+    }
+
+    public long getTinhbot() {
+        return tinhbot;
+    }
+
+    public void setTinhbot(long tinhbot) {
+        this.tinhbot = tinhbot;
+    }
+
+    public long getLipit() {
+        return lipit;
+    }
+
+    public void setLipit(long lipit) {
+=======
     public int getProtein() {
         return protein;
     }
@@ -74,6 +109,7 @@ public class Food {
     }
 
     public void setLipit(int lipit) {
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
         this.lipit = lipit;
     }
 
@@ -93,6 +129,19 @@ public class Food {
         this.diem = diem;
     }
 
+<<<<<<< HEAD
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    
+
+    
+=======
     public String getStatus() {
         return status;
     }
@@ -105,6 +154,7 @@ public class Food {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+>>>>>>> f1118e8fe5409200989e1f680dda7ee757bc2997
     
     
 }
