@@ -240,7 +240,9 @@ public class QueryFood {
                 int protein = rs.getInt("protein");
                 int tinhbot = rs.getInt("tinhbot");
                 int lipit = rs.getInt("lipit");
+                int soluong = rs.getInt("soluong");
                 String tenmon = rs.getString("tenmon");
+                food.setSoluong(soluong);
                 food.setProtein(protein);
                 food.setTinhbot(tinhbot);
                 food.setLipit(lipit);

@@ -12,7 +12,7 @@ package Data;
 public class Food {
     private int id;
     private String tenmon;
-    private String soluong;
+    private int soluong;
     private int protein;
     private int tinhbot;
     private int lipit;
@@ -45,11 +45,11 @@ public class Food {
         this.tenmon = tenmon;
     }
 
-    public String getSoluong() {
+    public int getSoluong() {
         return soluong;
     }
 
-    public void setSoluong(String soluong) {
+    public void setSoluong(int soluong) {
         this.soluong = soluong;
     }
 
