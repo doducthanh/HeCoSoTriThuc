@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Data.Food;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -225,6 +226,32 @@ public class QueryFood {
         }catch(Exception e){
             
         }
+    }
+    
+    public static ArrayList<Food> GetCaloFood(int nhom) {
+        ArrayList<Food> array = new ArrayList<Food>();
+        try (Connection conn = ConnectSQL.connectsql()) {
+            String query = "SELECT * FROM tbl_monan WHERE nhom = " + nhom + " ORDER BY diem desc";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs;
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Food food = new Food();
+                int protein = rs.getInt("protein");
+                int tinhbot = rs.getInt("tinhbot");
+                int lipit = rs.getInt("lipit");
+                String tenmon = rs.getString("tenmon");
+                food.setProtein(protein);
+                food.setTinhbot(tinhbot);
+                food.setLipit(lipit);
+                food.setTenmon(tenmon);
+                array.add(food);
+            }
+            return array;
+        }catch(Exception e){
+            
+        }
+        return null;
     }
     
     public static void main(String[] args) throws SQLException {

@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Data.Food;
 import Model.ConnectSQL;
 import Model.QueryFood;
 import Util.Common;
@@ -137,6 +138,30 @@ public class MainController {
         return calo;
     }
     
+    private int GetCaloFood(int protein, int tinhbot, int lipit) {
+        return (protein + tinhbot + lipit);
+    }
+    
+    public String ChangeFoods(String tenmon, int nhom, float sumcalo) {
+        ArrayList<Food> array = new QueryFood().GetCaloFood(nhom);
+        float min = sumcalo - 20;
+        float max = sumcalo + 20;
+        for (int i = 0; i < array.size(); i++) {
+            Food food = array.get(i);
+            int protein = food.getProtein();
+            int tinhbot = food.getTinhbot();
+            int lipit = food.getLipit();
+            float calo = GetCaloFood(protein, tinhbot, lipit);
+            food.setCalo(calo);
+            if(min < calo && calo < max) {
+                if(!tenmon.equals(food.getTenmon()))
+                    return food.getTenmon();
+            }
+        }
+        
+        return null;
+    }
+    
     public void Insert2Table(int iNhom, float [] Calo, Vector vUnlike, JTable table1, JTable table2, JTable table3){
 
         float ProteinClone = 0;
@@ -237,5 +262,10 @@ public class MainController {
         }else{
             new QueryFood().upDateInforFoodDisLike(id);
         }
+    }
+    
+    public static void main(String[] args) {
+        String st = new MainController().ChangeFoods("Thịt chân giò luộc", 2, 300);
+        System.out.println(st);
     }
 }
